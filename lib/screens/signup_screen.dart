@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './get_cities.dart';
 
-
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
 
@@ -11,7 +10,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  String value='cero';
+  String value = 'cero';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +19,10 @@ class _SignupScreenState extends State<SignupScreen> {
         // title: Text('Login'),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -60,10 +62,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontSize: 30,
                           color: Color(0xff1d976c),
                           fontFamily: 'Monserrat',
-                          fontStyle: FontStyle.normal
-                      ),
+                          fontStyle: FontStyle.normal),
                     ),
-
                     SizedBox(
                       height: 30,
                     ),
@@ -78,7 +78,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         fillColor: Colors.grey[200],
                         hintText: 'Email',
                         suffixIcon: Icon(
-                            Icons.alternate_email, color: Color(0xff1d976c),
+                          Icons.alternate_email,
+                          color: Color(0xff1d976c),
                         ),
                         contentPadding: const EdgeInsets.all(15),
                         focusedBorder: OutlineInputBorder(
@@ -102,7 +103,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           color: Colors.black54),
                       decoration: InputDecoration(
                         suffixIcon: Icon(
-                          Icons.accessibility, color: Color(0xff1d976c),
+                          Icons.accessibility,
+                          color: Color(0xff1d976c),
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
@@ -119,11 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    _listaCiudades(),
-                    SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     TextField(
                       obscureText: false,
@@ -134,7 +132,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           color: Colors.black54),
                       decoration: InputDecoration(
                         suffixIcon: Icon(
-                          Icons.security, color: Color(0xff1d976c),
+                          Icons.security,
+                          color: Color(0xff1d976c),
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
@@ -153,7 +152,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(
                       height: 100,
                     ),
-
                     FlatButton(
                       color: Color(0xff1d976c),
                       child: Text(
@@ -181,20 +179,19 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _listaCiudades(){
+  Widget _listaCiudades() {
     //citiesProvider.getCities().then((value) => print(value));
     return FutureBuilder(
       future: citiesProvider.getCities(),
-
-      builder: (context, AsyncSnapshot <List<dynamic>> snapshot) {
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         //print('project snapshot data is: ${snapshot.data}');
 
         return DropdownButton(
-          style: TextStyle(
-            fontFamily: 'Monserrat',
-            fontStyle: FontStyle.normal,
-            fontSize: 20,
-          ),
+            style: TextStyle(
+              fontFamily: 'Monserrat',
+              fontStyle: FontStyle.normal,
+              fontSize: 20,
+            ),
             disabledHint: Text("You can't select anything."),
             items: snapshot.data.map((valorCity) {
               print(valorCity['name']);
@@ -202,17 +199,13 @@ class _SignupScreenState extends State<SignupScreen> {
                 value: valorCity['pk'].toString(),
                 child: Text(valorCity['name']),
               );
-            }),//allCities(snapshot.data),
+            }), //allCities(snapshot.data),
             onChanged: (String newValue) {
               setState(() {
-               value = newValue;
+                value = newValue;
               });
-            }
-        );
+            });
       },
     );
-
-
-
   }
 }
