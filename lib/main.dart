@@ -9,7 +9,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import './screens/getting_started_screen.dart';
 import './screens/login_screen.dart';
 import './screens/signup_screen.dart';
-import 'User/bloc_user.dart';
+import 'User/bloc/bloc_user.dart';
 
 void main() {
   runApp(MyApp());

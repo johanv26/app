@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:app_login_ui/User/firebase_auth_api.dart';
+import 'package:app_login_ui/User/repository/firebase_auth_api.dart';
 
 class AuthRepository {
   final _firebaseAuthAPI = FirebaseAuthAPI();

@@ -1,4 +1,4 @@
-import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import './get_cities.dart';
 import 'package:app_login_ui/widgets/button_green.dart';
 import 'package:app_login_ui/screens/landing_screen.dart';
-import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupScreen extends StatefulWidget {

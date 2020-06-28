@@ -1,8 +1,8 @@
 import 'package:app_login_ui/User/model/user.dart';
-import 'package:app_login_ui/User/user_info.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_login_ui/User/widgets/user_info_appbar.dart';
+
 import 'package:flutter/material.dart';
-import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class UserAppBar extends StatelessWidget {

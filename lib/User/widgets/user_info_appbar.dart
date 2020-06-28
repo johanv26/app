@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_login_ui/User/bloc_user.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+
 import 'package:app_login_ui/User/model/user.dart';
 
 class UserInfoAppbar extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:app_login_ui/User/auth_repository.dart';
+import 'package:app_login_ui/User/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserBloc implements Bloc {

@@ -1,10 +1,10 @@
-import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:app_login_ui/screens/get_rss.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app_login_ui/User/profile_account_settings.dart';
+import 'package:app_login_ui/User/widgets/profile_account_settings.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:app_login_ui/User/user_appbar.dart';
+import 'package:app_login_ui/User/widgets/user_appbar.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
