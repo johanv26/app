@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "695321678388",
+    "firebase_url": "https://peakuapp.firebaseio.com",
+    "project_id": "peakuapp",
+    "storage_bucket": "peakuapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695321678388:android:dbc549904c27d20d4b7061",
+        "android_client_info": {
+          "package_name": "com.example.app_login_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695321678388-lr1ufh6gelthv05pt81hbpqjmn22drdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app_login_ui",
+            "certificate_hash": "59eea5ee9108eaff57a2112ec8952c88abbcf40f"
+          }
+        },
+        {
+          "client_id": "695321678388-j65molaras3mdt1ona8ce9rn0t52jid3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv6N6ptrKA2TyQyPuhsYGgkaN0WEMHSCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695321678388-j65molaras3mdt1ona8ce9rn0t52jid3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

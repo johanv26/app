@@ -1,6 +1,13 @@
+import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import './get_cities.dart';
+import 'package:app_login_ui/widgets/button_green.dart';
+import 'package:app_login_ui/screens/landing_screen.dart';
+import 'package:app_login_ui/User/bloc_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -11,8 +18,28 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String value = 'cero';
+  UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of(context);
+    return _handleCurrentSession();
+  }
+
+  Widget _handleCurrentSession() {
+    return StreamBuilder(
+        stream: userBloc.authStatus,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //snashot-data-object-user
+          if (!snapshot.hasData || snapshot.hasError) {
+            return registerPrincipalScreen();
+          } else {
+            return LandingScreen();
+          }
+        });
+  }
+
+  Widget registerPrincipalScreen() {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -150,7 +177,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 100,
+                      height: 50,
                     ),
                     FlatButton(
                       color: Color(0xff1d976c),
@@ -169,6 +196,19 @@ class _SignupScreenState extends State<SignupScreen> {
                       textColor: Colors.white,
                       onPressed: () {},
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ButtonGreen(
+                      text: 'Registro con Gmail',
+                      onPressed: () {
+                        userBloc.signOut(); //Force closed
+                        //thesession by flutter bug
+                        userBloc.signIn().then((FirebaseUser user) =>
+                            print("el usario es ${user.displayName}"));
+                      },
+                      height: 50.0,
+                    )
                   ],
                 ),
               ),
