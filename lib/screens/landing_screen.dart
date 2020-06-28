@@ -13,6 +13,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   int _selectedIndex = 0;
+  UserBloc userBloc; //OBject with the user info
   final List<Widget> widgetsChildren = [
     BlocProvider<UserBloc>(child: AccountSettings(), bloc: UserBloc()),
     AccountSettings2(),
@@ -26,10 +27,12 @@ class _LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of<UserBloc>(context);
+
     return Scaffold(
       body: widgetsChildren[_selectedIndex],
       appBar: PreferredSize(
-        child: UserAppBar("photo", "Johan", "mail"),
+        child: BlocProvider<UserBloc>(child: UserAppBar(), bloc: UserBloc()),
         preferredSize: Size.fromHeight(100),
       ),
       //body: ,

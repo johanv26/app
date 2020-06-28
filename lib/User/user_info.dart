@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:app_login_ui/User/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:app_login_ui/User/model/user.dart';
 
-class UserInfo extends StatelessWidget {
-  String imgProfile;
-  String name;
-  String email;
+class UserInfoAppbar extends StatelessWidget {
+  User user;
 
-  UserInfo(this.imgProfile, this.name, this.email);
+  UserInfoAppbar(@required this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class UserInfo extends StatelessWidget {
               ),
             ),
             Text(
-              name,
+              user.name,
               style: TextStyle(
                 fontFamily: 'Monserrat',
                 fontStyle: FontStyle.normal,
@@ -43,8 +42,7 @@ class UserInfo extends StatelessWidget {
       leading: Container(
         margin: EdgeInsets.only(left: 10.0, top: 10.0),
         child: CircleAvatar(
-          backgroundImage: NetworkImage(
-              'https://cdn.techinasia.com/wp-content/uploads/2016/02/pawel-netreba-bfab.jpg'),
+          backgroundImage: NetworkImage(user.photoURL),
         ),
       ),
     );
