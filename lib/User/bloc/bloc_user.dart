@@ -21,6 +21,11 @@ class UserBloc implements Bloc {
     return _auth_repository.signInFirebase();
   }
 
+//2. Register with only mail and password
+  Future<FirebaseUser> signUp(email, password) {
+    return _auth_repository.signUpFirebase(email, password);
+  }
+
   //Sgn out
   final _cloudFirestoreRepository = CloudFirestoreRepository();
 

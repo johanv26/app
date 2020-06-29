@@ -17,6 +17,16 @@ class FirebaseAuthAPI {
     return user;
   }
 
+  Future<FirebaseUser> signUp(String email, String password) async {
+    print(email);
+    print(password);
+    AuthResult result = await _auth.createUserWithEmailAndPassword(
+        email: email.trim(),
+        password: password); //Trim in order t valdiate in Freibase
+    FirebaseUser user = result.user;
+    return user;
+  }
+
   void signOut() async {
     await _auth.signOut().then((value) => print("Sesion cerrada"));
     googleSignIn.signOut();

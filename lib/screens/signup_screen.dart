@@ -6,11 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import './get_cities.dart';
 import 'package:app_login_ui/widgets/button_green.dart';
-import 'package:app_login_ui/screens/landing_screen.dart';
-import 'package:app_login_ui/User/bloc/bloc_user.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_login_ui/User/screens/landing_screen.dart';
 import 'package:app_login_ui/User/model/user.dart';
-import 'package:app_login_ui/widgets/text_input.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -115,14 +112,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       hintText: "Nombre Completo",
                       inputType: null,
                       controller: _controllerNameUser,
-                      obscureHidden: true,
+                      obscureHidden: false,
                       iconData: Icons.accessibility,
                     ),
                     SizedBox(
                       height: 30,
                     ),
                     TextInput(
-                      hintText: "Contrasenia",
+                      hintText: "Contraseña",
                       inputType: null,
                       controller: _controllerPasswordUser,
                       iconData: Icons.security,
@@ -146,7 +143,21 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       padding: const EdgeInsets.all(15),
                       textColor: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        userBloc.signOut(); //Force closed
+                        //thesession by flutter bug
+                        userBloc
+                            .signUp(_controllerEmailUser.text,
+                                _controllerPasswordUser.text)
+                            .then((FirebaseUser user) {
+                          print("el usuario es ${_controllerNameUser.text}");
+                          userBloc.updateUserData(User(
+                              uid: user.uid,
+                              name: _controllerNameUser.text,
+                              password: _controllerPasswordUser.text,
+                              email: _controllerEmailUser.text));
+                        });
+                      },
                     ),
                     SizedBox(
                       height: 10,

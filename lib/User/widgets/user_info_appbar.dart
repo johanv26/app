@@ -27,7 +27,8 @@ class UserInfoAppbar extends StatelessWidget {
               ),
             ),
             Text(
-              user.name,
+              //user.email[0:5],
+              'probando',
               style: TextStyle(
                 fontFamily: 'Monserrat',
                 fontStyle: FontStyle.normal,
@@ -41,7 +42,8 @@ class UserInfoAppbar extends StatelessWidget {
       leading: Container(
         margin: EdgeInsets.only(left: 10.0, top: 10.0),
         child: CircleAvatar(
-          backgroundImage: NetworkImage(user.photoURL),
+          backgroundImage: NetworkImage(
+              'https://lh3.googleusercontent.com/a-/AOh14Gh8AnBeNBI8qrlZIBjOC8l1KVYaJ4GapMfdmr50kQ=s96-c'),
         ),
       ),
     );

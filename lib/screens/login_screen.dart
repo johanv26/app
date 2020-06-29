@@ -1,4 +1,4 @@
-import 'package:app_login_ui/screens/landing_screen.dart';
+import 'package:app_login_ui/User/screens/landing_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,7 +7,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: Colors.black),
@@ -41,8 +41,7 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 30,
                   color: Color(0xff1d976c),
                   fontFamily: 'Monserrat',
-                  fontStyle: FontStyle.normal
-              ),
+                  fontStyle: FontStyle.normal),
             ),
             SizedBox(
               height: 80,
@@ -58,7 +57,8 @@ class LoginScreen extends StatelessWidget {
                 fillColor: Colors.grey[200],
                 hintText: 'Email',
                 suffixIcon: Icon(
-                  Icons.alternate_email, color: Color(0xff1d976c),
+                  Icons.alternate_email,
+                  color: Color(0xff1d976c),
                 ),
                 contentPadding: const EdgeInsets.all(15),
                 focusedBorder: OutlineInputBorder(
@@ -83,7 +83,8 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.black54),
               decoration: InputDecoration(
                 suffixIcon: Icon(
-                  Icons.security, color: Color(0xff1d976c),
+                  Icons.security,
+                  color: Color(0xff1d976c),
                 ),
                 filled: true,
                 fillColor: Colors.grey[200],
@@ -119,8 +120,8 @@ class LoginScreen extends StatelessWidget {
               textColor: Colors.white,
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LandingScreen()),
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingScreen()),
                 );
               },
             ),
