@@ -1,4 +1,5 @@
 import 'package:app_login_ui/User/bloc/bloc_user.dart';
+import 'package:app_login_ui/widgets/text_input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:app_login_ui/screens/landing_screen.dart';
 import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_login_ui/User/model/user.dart';
+import 'package:app_login_ui/widgets/text_input.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -24,6 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
+
     return _handleCurrentSession();
   }
 
@@ -41,6 +44,9 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Widget registerPrincipalScreen() {
+    final _controllerNameUser = TextEditingController();
+    final _controllerEmailUser = TextEditingController();
+    final _controllerPasswordUser = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -95,87 +101,32 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(
                       height: 30,
                     ),
-                    TextField(
-                      style: TextStyle(
-                          fontFamily: 'Monserrat',
-                          fontStyle: FontStyle.normal,
-                          fontSize: 18,
-                          color: Colors.black54),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: 'Email',
-                        suffixIcon: Icon(
-                          Icons.alternate_email,
-                          color: Color(0xff1d976c),
-                        ),
-                        contentPadding: const EdgeInsets.all(15),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
+                    TextInput(
+                      hintText: "email",
+                      inputType: null,
+                      controller: _controllerEmailUser,
+                      obscureHidden: false,
+                      iconData: Icons.alternate_email,
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
-                      style: TextStyle(
-                          fontFamily: 'Monserrat',
-                          fontStyle: FontStyle.normal,
-                          fontSize: 18,
-                          color: Colors.black54),
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.accessibility,
-                          color: Color(0xff1d976c),
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: 'Nombre completo',
-                        contentPadding: const EdgeInsets.all(15),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
+                    TextInput(
+                      hintText: "Nombre Completo",
+                      inputType: null,
+                      controller: _controllerNameUser,
+                      obscureHidden: true,
+                      iconData: Icons.accessibility,
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    TextField(
-                      obscureText: false,
-                      style: TextStyle(
-                          fontFamily: 'Monserrat',
-                          fontStyle: FontStyle.normal,
-                          fontSize: 18,
-                          color: Colors.black54),
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.security,
-                          color: Color(0xff1d976c),
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: 'Contraseña',
-                        contentPadding: const EdgeInsets.all(15),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
+                    TextInput(
+                      hintText: "Contrasenia",
+                      inputType: null,
+                      controller: _controllerPasswordUser,
+                      iconData: Icons.security,
+                      obscureHidden: true,
                     ),
                     SizedBox(
                       height: 50,
@@ -210,6 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           userBloc.updateUserData(User(
                               uid: user.uid,
                               name: user.displayName,
+                              password: '***Logged with gmail***',
                               email: user.email,
                               photoURL: user.photoUrl));
                         });

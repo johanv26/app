@@ -13,6 +13,7 @@ class CloudFirestoreAPI {
     return ref.setData({
       'uid': user.uid,
       'name': user.name,
+      'password': user.password,
       'email': user.email,
       'photoURL': user.photoURL,
       'city': user.city,
