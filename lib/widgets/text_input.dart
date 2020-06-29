@@ -6,7 +6,7 @@ class TextInput extends StatelessWidget {
   final TextEditingController controller;
   IconData iconData = Icons.security;
   bool obscureHidden = false;
-
+  bool validate = false;
   TextInput({
     Key key,
     @required this.hintText,
@@ -14,6 +14,7 @@ class TextInput extends StatelessWidget {
     @required this.controller,
     this.obscureHidden,
     this.iconData,
+    this.validate,
   });
 
   @override
@@ -28,6 +29,7 @@ class TextInput extends StatelessWidget {
           fontSize: 18,
           color: Colors.black54),
       decoration: InputDecoration(
+        errorText: validate ? 'Valor no puede estar vacio' : null,
         suffixIcon: Icon(
           iconData,
           color: Color(0xff1d976c),

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           ),
           home: GettingStartedScreen(),
           routes: {
-            LoginScreen.routeName: (ctx) => LoginScreen(),
+            SigninScreen.routeName: (ctx) => SigninScreen(),
             SignupScreen.routeName: (ctx) => SignupScreen(),
           },
         ),

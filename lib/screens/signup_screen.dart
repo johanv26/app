@@ -44,6 +44,9 @@ class _SignupScreenState extends State<SignupScreen> {
     final _controllerNameUser = TextEditingController();
     final _controllerEmailUser = TextEditingController();
     final _controllerPasswordUser = TextEditingController();
+    bool _validateName = false;
+    bool _validateEmail = false;
+    bool _validatePassword = false;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -104,6 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _controllerEmailUser,
                       obscureHidden: false,
                       iconData: Icons.alternate_email,
+                      validate: _validateEmail,
                     ),
                     SizedBox(
                       height: 20,
@@ -114,6 +118,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _controllerNameUser,
                       obscureHidden: false,
                       iconData: Icons.accessibility,
+                      validate: _validateName,
                     ),
                     SizedBox(
                       height: 30,
@@ -124,6 +129,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _controllerPasswordUser,
                       iconData: Icons.security,
                       obscureHidden: true,
+                      validate: _validatePassword,
                     ),
                     SizedBox(
                       height: 50,
@@ -144,19 +150,36 @@ class _SignupScreenState extends State<SignupScreen> {
                       padding: const EdgeInsets.all(15),
                       textColor: Colors.white,
                       onPressed: () {
-                        userBloc.signOut(); //Force closed
-                        //thesession by flutter bug
-                        userBloc
-                            .signUp(_controllerEmailUser.text,
-                                _controllerPasswordUser.text)
-                            .then((FirebaseUser user) {
-                          print("el usuario es ${_controllerNameUser.text}");
-                          userBloc.updateUserData(User(
-                              uid: user.uid,
-                              name: _controllerNameUser.text,
-                              password: _controllerPasswordUser.text,
-                              email: _controllerEmailUser.text));
+                        setState(() {
+                          _controllerEmailUser.text.isEmpty
+                              ? _validateEmail = true
+                              : _validateEmail = false;
+                          _controllerNameUser.text.isEmpty
+                              ? _validateName = true
+                              : _validateName = false;
+                          _controllerPasswordUser.text.isEmpty
+                              ? _validatePassword = true
+                              : _validatePassword = false;
                         });
+                        if (_validateEmail |
+                            _validateName |
+                            _validatePassword) {
+                          print("esta vacio los campos   ${_validateEmail}");
+                        } else {
+                          userBloc.signOut(); //Force closed
+                          //thesession by flutter bug
+                          userBloc
+                              .signUp(_controllerEmailUser.text,
+                                  _controllerPasswordUser.text)
+                              .then((FirebaseUser user) {
+                            print("el usuario es ${_controllerNameUser.text}");
+                            userBloc.updateUserData(User(
+                                uid: user.uid,
+                                name: _controllerNameUser.text,
+                                password: _controllerPasswordUser.text,
+                                email: _controllerEmailUser.text));
+                          });
+                        }
                       },
                     ),
                     SizedBox(

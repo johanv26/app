@@ -76,8 +76,8 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              for(int i = 0; i<slideList.length; i++)
-                                if( i == _currentPage )
+                              for (int i = 0; i < slideList.length; i++)
+                                if (i == _currentPage)
                                   SlideDots(true)
                                 else
                                   SlideDots(false)
@@ -134,7 +134,8 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
                               fontSize: 18),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed(LoginScreen.routeName);
+                          Navigator.of(context)
+                              .pushNamed(SigninScreen.routeName);
                         },
                       ),
                     ],
