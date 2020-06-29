@@ -8,6 +8,7 @@ import 'package:app_login_ui/widgets/button_green.dart';
 import 'package:app_login_ui/screens/landing_screen.dart';
 import 'package:app_login_ui/User/bloc/bloc_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_login_ui/User/model/user.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -204,8 +205,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPressed: () {
                         userBloc.signOut(); //Force closed
                         //thesession by flutter bug
-                        userBloc.signIn().then((FirebaseUser user) =>
-                            print("el usario es ${user.displayName}"));
+                        userBloc.signIn().then((FirebaseUser user) {
+                          print("el usuario es ${user.displayName}");
+                          userBloc.updateUserData(User(
+                              uid: user.uid,
+                              name: user.displayName,
+                              email: user.email,
+                              photoURL: user.photoUrl));
+                        });
                       },
                       height: 50.0,
                     )
