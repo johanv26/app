@@ -42,7 +42,9 @@ class _SigninScreenState extends State<SigninScreen> {
   Widget loginPrincipalScreen() {
     final _controllerEmailUser = TextEditingController();
     final _controllerPasswordUser = TextEditingController();
-    bool _validate = false;
+    bool _validateEmail = false;
+    bool _validatePassword = false;
+    bool _AfterFirstEntryToText;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -121,10 +123,27 @@ class _SigninScreenState extends State<SigninScreen> {
                 padding: const EdgeInsets.all(15),
                 textColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LandingScreen()),
-                  );
+                  _AfterFirstEntryToText = true;
+
+                  _validateEmail = _controllerEmailUser.text.isEmpty;
+                  _validatePassword = _controllerPasswordUser.text.isEmpty;
+                  if (_validateEmail | _validatePassword) {
+                    print("esta vacio los campos   ${_validateEmail}");
+                  } else {
+                    userBloc.signOut(); //Force closed
+                    //thesession by flutter bug
+                    userBloc
+                        .signUp(_controllerEmailUser.text,
+                            _controllerPasswordUser.text)
+                        .then((FirebaseUser user) {
+                      print("el usuario es ${_controllerNameUser.text}");
+                      userBloc.updateUserData(User(
+                          uid: user.uid,
+                          name: user.displayName,
+                          password: _controllerPasswordUser.text,
+                          email: _controllerEmailUser.text));
+                    });
+                  }
                 },
               ),
               SizedBox(

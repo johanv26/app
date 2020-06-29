@@ -6,7 +6,7 @@ class TextInput extends StatelessWidget {
   final TextEditingController controller;
   IconData iconData = Icons.security;
   bool obscureHidden = false;
-  bool validate = false;
+  bool validate;
   TextInput({
     Key key,
     @required this.hintText,
@@ -19,6 +19,9 @@ class TextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (validate) {
+      validate = controller.text.isEmpty;
+    }
     return TextField(
       controller: controller,
       keyboardType: inputType,

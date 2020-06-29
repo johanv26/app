@@ -44,9 +44,12 @@ class _SignupScreenState extends State<SignupScreen> {
     final _controllerNameUser = TextEditingController();
     final _controllerEmailUser = TextEditingController();
     final _controllerPasswordUser = TextEditingController();
+    bool _AfterFirstEntryToText;
     bool _validateName = false;
     bool _validateEmail = false;
     bool _validatePassword = false;
+    print(_AfterFirstEntryToText);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -150,17 +153,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       padding: const EdgeInsets.all(15),
                       textColor: Colors.white,
                       onPressed: () {
-                        setState(() {
-                          _controllerEmailUser.text.isEmpty
-                              ? _validateEmail = true
-                              : _validateEmail = false;
-                          _controllerNameUser.text.isEmpty
-                              ? _validateName = true
-                              : _validateName = false;
-                          _controllerPasswordUser.text.isEmpty
-                              ? _validatePassword = true
-                              : _validatePassword = false;
-                        });
+                        _AfterFirstEntryToText = true;
+                        _validateName = _controllerNameUser.text.isEmpty;
+                        _validateEmail = _controllerEmailUser.text.isEmpty;
+                        _validatePassword =
+                            _controllerPasswordUser.text.isEmpty;
                         if (_validateEmail |
                             _validateName |
                             _validatePassword) {
