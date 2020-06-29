@@ -8,6 +8,7 @@ import './get_cities.dart';
 import 'package:app_login_ui/widgets/button_green.dart';
 import 'package:app_login_ui/User/screens/landing_screen.dart';
 import 'package:app_login_ui/User/model/user.dart';
+import 'package:app_login_ui/widgets/flush_bar.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -162,6 +163,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             _validateName |
                             _validatePassword) {
                           print("esta vacio los campos   ${_validateEmail}");
+                          signupErrorFlushBar(context);
                         } else {
                           userBloc.signOut(); //Force closed
                           //thesession by flutter bug

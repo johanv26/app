@@ -10,4 +10,7 @@ class AuthRepository {
 
   Future<FirebaseUser> signUpFirebase(email, password) =>
       _firebaseAuthAPI.signUp(email, password);
+
+  Future signInFirebaseWithEmail(email, password) =>
+      _firebaseAuthAPI.signinWithEmailPassword(email, password);
 }

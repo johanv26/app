@@ -7,6 +7,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:app_login_ui/widgets/button_green.dart';
 import 'package:app_login_ui/User/screens/landing_screen.dart';
 import 'package:app_login_ui/User/model/user.dart';
+import 'package:app_login_ui/widgets/flush_bar.dart';
 
 class SigninScreen extends StatefulWidget {
   static const routeName = '/signin';
@@ -45,8 +46,10 @@ class _SigninScreenState extends State<SigninScreen> {
     bool _validateEmail = false;
     bool _validatePassword = false;
     bool _AfterFirstEntryToText;
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      appBar: AppBar(
+      key: _scaffoldKey,
+      appBar: new AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
@@ -93,6 +96,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 controller: _controllerEmailUser,
                 obscureHidden: false,
                 iconData: Icons.alternate_email,
+                validate: _validateEmail,
               ),
               SizedBox(
                 height: 20,
@@ -103,6 +107,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 controller: _controllerPasswordUser,
                 iconData: Icons.security,
                 obscureHidden: true,
+                validate: _validatePassword,
               ),
               SizedBox(
                 height: 50,
@@ -129,19 +134,25 @@ class _SigninScreenState extends State<SigninScreen> {
                   _validatePassword = _controllerPasswordUser.text.isEmpty;
                   if (_validateEmail | _validatePassword) {
                     print("esta vacio los campos   ${_validateEmail}");
+                    signupErrorFlushBar(context);
                   } else {
                     userBloc.signOut(); //Force closed
                     //thesession by flutter bug
                     userBloc
-                        .signUp(_controllerEmailUser.text,
+                        .signInEmailPassword(_controllerEmailUser.text,
                             _controllerPasswordUser.text)
-                        .then((FirebaseUser user) {
-                      print("el usuario es ${_controllerNameUser.text}");
-                      userBloc.updateUserData(User(
-                          uid: user.uid,
-                          name: user.displayName,
-                          password: _controllerPasswordUser.text,
-                          email: _controllerEmailUser.text));
+                        .then((dynamic user) {
+                      print("el usuario es ${user}");
+                      if (user == null) {
+                        loginErrorFlushBar(context);
+                      } else {
+                        print("el usuario es ${_controllerEmailUser.text}");
+                        userBloc.updateUserData(User(
+                            uid: user.uid,
+                            name: user.displayName,
+                            password: _controllerPasswordUser.text,
+                            email: _controllerEmailUser.text));
+                      }
                     });
                   }
                 },
